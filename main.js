@@ -21,20 +21,36 @@ $(document).ready(function(){
         $(this).find('i').addClass('d-none');
         $(this).find('span').removeClass('d-none');
 
-        $.ajax(endpoint).done(function(answer){
-            const logradouro = answer.logradouro;
-            const bairro = answer.bairro;
-            const cidade = answer.localidade;
-            const uf = answer.uf;
+    //     $.ajax(endpoint).done(function(answer){
+    //         const logradouro = answer.logradouro;
+    //         const bairro = answer.bairro;
+    //         const cidade = answer.localidade;
+    //         const uf = answer.uf;
+    //         const address = `${logradouro}, ${bairro} - ${cidade} - ${uf}`;
+    //         $('#address').val(address)
+
+    //         setTimeout(function(){
+    //             $('#search-cep').find('i').removeClass('d-none');
+    //             $('#search-cep').find('span').addClass('d-none');
+    //         }, 1000);
+
+            
+    //     })
+
+        fetch(endpoint).then(function(response) {
+            return response.json();
+        })
+        .then(function(json){
+            const logradouro = json.logradouro;
+            const bairro = json.bairro;
+            const cidade = json.localidade;
+            const uf = json.uf;
             const address = `${logradouro}, ${bairro} - ${cidade} - ${uf}`;
             $('#address').val(address)
-
-            setTimeout(function(){
+        })
+        setTimeout(function(){
                 $('#search-cep').find('i').removeClass('d-none');
                 $('#search-cep').find('span').addClass('d-none');
             }, 1000);
-
-            
-        })
     })
 })
