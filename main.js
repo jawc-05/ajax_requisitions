@@ -37,7 +37,8 @@ $(document).ready(function(){
             
     //     })
 
-        fetch(endpoint).then(function(response) {
+        fetch(endpoint)
+        .then(function(response) {
             return response.json();
         })
         .then(function(json){
@@ -48,9 +49,14 @@ $(document).ready(function(){
             const address = `${logradouro}, ${bairro} - ${cidade} - ${uf}`;
             $('#address').val(address)
         })
-        setTimeout(function(){
-                $('#search-cep').find('i').removeClass('d-none');
-                $('#search-cep').find('span').addClass('d-none');
-            }, 1000);
+        .catch(function(error){
+            alert("Ocorreu um erro ao buscar o CEP. Por favor, tente novamente mais tarde.")
+        })
+        .finally(function(){
+            setTimeout(function(){
+                    $('#search-cep').find('i').removeClass('d-none');
+                    $('#search-cep').find('span').addClass('d-none');
+                }, 1000);
+    })
     })
 })
