@@ -57,6 +57,16 @@ $(document).ready(function(){
                     $('#search-cep').find('i').removeClass('d-none');
                     $('#search-cep').find('span').addClass('d-none');
                 }, 1000);
+        })
     })
-    })
+
+    $('#form-order').submit(function(event) {
+        event.preventDefault(); // Impede o envio do formulário
+        
+        // Validar o campo nome
+        if ($('#name').val().length == 0) {
+            alert('O campo nome é obrigatório');
+        }
+        
+    });
 })
